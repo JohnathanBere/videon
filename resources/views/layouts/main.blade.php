@@ -2,7 +2,7 @@
 <html lang="en" style="height:100%;">
 <head>
     <meta charset="utf-8">
-    <title>@yield('title')</title>
+    <title>VideOn - @yield('title')</title>
     <!-- Always use the Laravel helper functions to link resources, they are always guaranteed to link regardless of page-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="pinegrow, blocks, bootstrap" />
@@ -58,10 +58,10 @@
                             <a href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Sign Up</a>
+                            <a href="/auth/register/">Sign Up</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#">Login</a>
+                            <a href="/auth/login/">Login</a>
                         </li>
                     </ul>
                     <!--//nav-->
@@ -81,6 +81,16 @@
     </div> --}}
 
     <div class="col-md-12">
+        @if(Session::has('flash_message'))
+            <div class="alert alert-info">
+                {{ Session::get('flash_message') }}
+            </div>
+        @endif
+        @foreach($errors->all() as $error)
+            <div class="alert alert-danger">
+                {{ $error }}
+            </div>
+        @endforeach
         @yield('content')
     </div>
 </div>

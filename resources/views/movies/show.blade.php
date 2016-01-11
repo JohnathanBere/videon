@@ -19,7 +19,7 @@
                 <div class="tab-pane fade in active" id="tab1">
                     <div class="row">
                         <div class="col-md-5 col-md-offset-1 col-sm-6">
-                            <img class="img-responsive" src="{{$movie->main_image}}">
+                            <img class="img-responsive" src="{{ URL::asset('images/uploaded/' . $movie->main_image) }}">
                         </div>
                         <!-- /.col -->
                         <div class="col-md-5 col-sm-6">
@@ -45,7 +45,33 @@
                     <!-- /.row -->
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
-                            <img class="img-responsive" src="http://placehold.it/600x250">
+                            <div id="carousel1" class="carousel slide" data-ride="carousel">
+                                <!-- Indicators -->
+                                <ol class="carousel-indicators">
+                                    <li data-target="#carousel1" data-slide-to="0" class="active"></li>
+                                    <li data-target="#carousel1" data-slide-to="1"></li>
+                                    <li data-target="#carousel1" data-slide-to="2"></li>
+                                </ol>
+                                <!-- Wrapper for slides -->
+                                <div class="carousel-inner">
+                                    <div class="item active">
+                                        <img class="img-responsive" src="{{ URL::asset('images/uploaded/' . $movie->_image1) }}" alt="image1" />
+                                        <div class="carousel-caption">
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <img class="img-responsive" src="{{ URL::asset('images/uploaded/' . $movie->_image2) }}" alt="image2" />
+                                    </div>
+                                    <div class="item">
+                                        <img class="img-responsive" src="{{ URL::asset('images/uploaded/' . $movie->_image3) }}" alt="image3" />
+                                    </div>
+                                </div>
+                                <!-- Controls -->
+                                <a class="left carousel-control" href="#carousel1" data-slide="prev"> <span class="glyphicon glyphicon-chevron-left"></span>
+                                </a>
+                                <a class="right carousel-control" href="#carousel1" data-slide="next"> <span class="glyphicon glyphicon-chevron-right"></span>
+                                </a>
+                            </div>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -59,13 +85,8 @@
                             <h3>Rent This movie</h3>
                             <p>Interested in renting {{ $movie->name }}?</p>
 
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                    <div class="row">
-                        <div class="col-sm-6 col-sm-offset-3">
-                            <img class="img-responsive" src="http://placehold.it/600x250">
+                            <button class="btn-lg btn-success">Add to basket</button>
+
                         </div>
                         <!-- /.col -->
                     </div>

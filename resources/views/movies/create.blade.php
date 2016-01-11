@@ -2,7 +2,82 @@
 @section('title', 'Add A Movie')
 
 @section('content')
-    Must be an admin
+   <div class="col-md-8 col-md-offset-2">
+        <div class="panel">
+            <div class="panel-body">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Create a movie entry</h3>
+                </div>
+
+                {!! Form::open(['action' => 'MoviesController@store', 'enctype' => 'multipart/form-data']) !!}
+                <!-- The last key value pair will allow an admin to upload images from the server or where ever-->
+                    <div class="form-group">
+                        {!! Form::label('name', 'Movie Title:') !!}
+                        {!! Form::text('name', $value = null, $attributes = ['class' => 'form-control', 'name' => 'name']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('director', 'Director:') !!}
+                        {!! Form::text('director', $value = null, $attributes = ['class' => 'form-control', 'name' => 'director']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('genre', 'Type in a genre:') !!}
+                        {!! Form::text('genre', $value = null, $attributes = ['class' => 'form-control', 'name' => 'genre']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('synopsis', 'A synopsis') !!}
+                        {!! Form::textarea('synopsis', $value = null, $attributes = ['class' => 'form-control', 'name' => 'synopsis']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('price', 'Type in a price:') !!}
+                        {!! Form::text('price', $value = null, $attributes = ['class' => 'form-control', 'name' => 'price', 'placeholder' => '£3.50, £2.50, or £1.00']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('main_image', 'Upload or append Movie main image name / possible URL:') !!}
+                        {!! Form::file('main_image', $attributes = ['class' => 'btn btn-default']) !!}
+                    </div>
+
+                    <panel class="panel-heading"><hr></panel>
+
+                    <div class="form-group">
+                        {!! Form::label('_image1', 'Upload or append Movie preview image name / possible URL:') !!}
+                        {!! Form::file('_image1', $attributes = ['class' => 'btn btn-default']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('_image2', 'Upload or append Movie preview image name / possible URL:') !!}
+                        {!! Form::file('_image2', $attributes = ['class' => 'btn btn-default']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('_image3', 'Upload or append Movie preview image name / possible URL:') !!}
+                        {!! Form::file('_image3', $attributes = ['class' => 'btn btn-default']) !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('category_id', 'Type of movie:') !!}
+                        <select name="category_id" class="form_control">
+                            <option value="1">Latest</option>
+                            <option value="2">Modern</option>
+                            <option value="3">Old</option>
+                            <option value="4">Kids</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::submit('Submit', $attributes = ['class' =>'btn btn-primary']) !!}
+                    </div>
+
+
+
+                {!! Form::close() !!}
+            </div>
+        </div>
+   </div>
 @stop
 
 @section('footer')

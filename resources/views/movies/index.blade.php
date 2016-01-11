@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Videon')
+@section('title', 'Home')
 
 @section('content')
     <section class="content-block gallery-1 gallery-1-1">
@@ -11,13 +11,13 @@
             </div>
             <div class="form-group">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-8 col-md-offset-2">
                         <label class="control-label" for="formInput18">Finding a film is only the beginning</label>
                         <input type="text" class="form-control" id="searchForm" placeholder="Search...">
                         <!-- Look to make this button function -->
                     </div>
-                    <div class="col-md-2">
-                        <button type="button" class="btn btn-primary">
+                    <div>
+                        <button id="search" type="button" class="btn btn-primary">
                             <i class="fa fa-search"></i>
                         </button>
                     </div>
@@ -47,15 +47,14 @@
                     <div class="col-md-3 col-sm-6 col-xs-12 gallery-item-wrapper artwork creative">
                         <div class="gallery-item">
                             <div class="gallery-thumb">
-                                <img src="{{ $movie->main_image }}" class="img-responsive" alt="{{ $movie->name }}">
+                                <img src="{{ URL::asset('images/uploaded/' . $movie->main_image) }}" class="img-responsive" alt="{{ $movie->name }}">
                                 <div class="image-overlay"></div>
-                                <a href="{{ $movie->main_image }}" class="gallery-zoom"><i class="fa fa-eye" alt="{{ $movie->name }}"></i></a>
+                                <a href="{{ URL::asset('images/uploaded/' . $movie->main_image) }}" class="gallery-zoom"><i class="fa fa-eye" alt="{{ $movie->name }}"></i></a>
                                 <a href="movies/{{ $movie->id }}/" class="gallery-link" target="_blank"><i class="fa fa-film"></i></a>
                             </div>
                             <div class="gallery-details">
                                 <h5>{{ $movie->name }}</h5>
                                 <h5>£{{ $movie->price }}</h5>
-                                <h5>{{ $movie->director }}</h5>
                             </div>
                         </div>
                     </div>

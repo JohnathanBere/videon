@@ -21,7 +21,9 @@ class CreateMoviesTable extends Migration
             $table->text('synopsis');
             $table->float('price');
             $table->string('main_image');
-            $table->string('_image');
+            $table->string('_image1');
+            $table->string('_image2');
+            $table->string('_image3');
             $table->timestamps();
         });
     }

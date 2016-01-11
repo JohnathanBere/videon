@@ -9,3 +9,8 @@
     width: 100%;
     border: 2px #F6F7F8 solid;
 }
+
+#search {
+    position: absolute;
+    top: 8px;
+}

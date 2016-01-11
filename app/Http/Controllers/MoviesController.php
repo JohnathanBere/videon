@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Commands\StoreMovieCommand;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use App\Movie;
 
 class MoviesController extends Controller
@@ -37,9 +37,64 @@ class MoviesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreMovieRequest $request)
     {
-        //
+        $name = $request->input('name');
+        $category_id = $request->input('category_id');
+        $director = $request->input('director');
+        $genre = $request->input('genre');
+        $synopsis = $request->input('synopsis');
+        $price = $request->input('price');
+        $main_image = $request->file('main_image');
+        $image1 = $request->file('_image1');
+        $image2 = $request->file('_image2');
+        $image3 = $request->file('_image3');
+
+
+        // Check if image(s) uploaded successfully
+        if($main_image) {
+            $main_image_filename = $main_image->getClientOriginalName();
+            $main_image->move(public_path('images/uploaded'), $main_image_filename);
+        }
+
+        else {
+            $main_image_filename = 'noimage.jpg';
+        }
+
+
+        if($image1) {
+            $image1_filename = $image1->getClientOriginalName();
+            $image1->move(public_path('images/uploaded'), $image1_filename);
+        }
+
+        else {
+            $image1_filename = 'noimage1.jpg';
+        }
+
+        if($image2) {
+            $image2_filename = $image2->getClientOriginalName();
+            $image2->move(public_path('images/uploaded'), $image2_filename);
+        }
+
+        else {
+            $image2_filename = 'noimage2.jpg';
+        }
+
+        if($image3) {
+            $image3_filename = $image3->getClientOriginalName();
+            $image3->move(public_path('images/uploaded'), $image3_filename);
+        }
+
+        else {
+            $image3_filename = 'noimage3.jpg';
+        }
+
+        // Create command
+        $command = new StoreMovieCommand($name, $category_id, $director, $genre, $synopsis, $price, $main_image_filename, $image1_filename, $image2_filename, $image3_filename);
+        $this->dispatch($command);
+
+        return \Redirect::route('movies.index')
+            ->with('flash_message' , 'Entry Successful');
     }
 
     /**
