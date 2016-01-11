@@ -1,0 +1,11 @@
+/* Put your custom styles here */
+
+#logo {
+    font-size:30px;
+    padding-top:30px;
+}
+
+.gallery-item img {
+    width: 100%;
+    border: 2px #F6F7F8 solid;
+}
