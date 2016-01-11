@@ -13,6 +13,9 @@
 
 Route::get('/', 'MoviesController@index');
 
+// Search
+Route::get('/search', 'MoviesController@search');
+
 // Movies and Categories
 Route::resource('movies', 'MoviesController');
 

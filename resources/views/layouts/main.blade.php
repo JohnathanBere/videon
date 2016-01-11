@@ -107,7 +107,7 @@
 @yield('footer')
 <div class="copyright-bar-2 bg-blue col-md-12">
     <div class="container-fluid text-center">
-        <p>© COPYRIGHT 2015 - Pinegrow Blocks - ALL RIGHTS RESERVED.</p>
+        <p>© COPYRIGHT 2015 - VideOn Catalogue - JB </p>
     </div>
 </div>
 </div>

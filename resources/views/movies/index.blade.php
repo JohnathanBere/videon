@@ -13,32 +13,23 @@
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <label class="control-label" for="formInput18">Finding a film is only the beginning</label>
-                        <input type="text" class="form-control" id="searchForm" placeholder="Search...">
-                        <!-- Look to make this button function -->
-                    </div>
-                    <div>
-                        <button id="search" type="button" class="btn btn-primary">
-                            <i class="fa fa-search"></i>
-                        </button>
+                        {!! Form::open(array('action' => 'MoviesController@search', 'method' => 'GET')) !!}
+                                {!! Form::text('searchString', null, array('class' => 'form-control', 'id' => 'searchForm', 'placeholder' => 'Search movies')) !!}
+                                <i class="fa fa-search"></i>
+                        {!! Form::close() !!}
                     </div>
                 </div>
             </div>
-            <ul class="filter">
-                <li class="active">
-                    <a href="#" data-filter="*">All</a>
-                </li>
+
+            <ul class="filter-php">
                 <li>
-                    <a href="#" data-filter=".latest">Latest</a>
+                    <a href="/">All</a>
                 </li>
+                @foreach($categories as $category)
                 <li>
-                    <a href="#" data-filter=".moderns">Modern Films</a>
+                    <a href="/categories/{{ $category->id }}">{{ $category->name }}</a>
                 </li>
-                <li>
-                    <a href="#" data-filter=".old">Older Movies</a>
-                </li>
-                <li>
-                    <a href="#" data-filter=".kids">Children</a>
-                </li>
+                @endforeach
             </ul>
             <!-- /.gallery-filter -->
             <div class="row">

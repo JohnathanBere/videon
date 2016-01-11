@@ -11,6 +11,7 @@ use App\Http\Requests;
 use App\Movie;
 use App\Http\Controllers\Auth;
 use App\Commands\DestroyMovieCommand;
+use DB;
 
 class MoviesController extends Controller
 {
@@ -29,6 +30,15 @@ class MoviesController extends Controller
     {
         $movies = Movie::all();
         return view('movies/index', compact('movies'));
+    }
+
+    public function search() {
+        $searchString = \Input::get('searchString');
+        $movies = Movie::where('name', 'LIKE', '%' . $searchString . '%')->
+            orwhere('director', 'LIKE', '%' . $searchString . '%')->
+        orwhere('genre', 'LIKE', '%' . $searchString . '%')->get();
+        return view('movies/index', compact('movies'));
+
     }
 
     /**
