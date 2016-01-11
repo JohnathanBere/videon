@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests;
 use App\Movie;
+use App\Http\Controllers\Auth;
 
 class MoviesController extends Controller
 {
+    public function __construct() {
+        $this->middleware('auth');
+        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
+        $this->middleware('admin');
+        $this->middleware('admin', ['except' => ['index', 'show', 'search']]);
+    }
     /**
      * Display a listing of the resource.
      *

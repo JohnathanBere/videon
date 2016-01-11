@@ -6,9 +6,11 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    protected $redirectPath = '/';
     /*
     |--------------------------------------------------------------------------
     | Registration & Login Controller
@@ -58,7 +60,18 @@ class AuthController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone-number' => $data['phone-number'],
             'password' => bcrypt($data['password']),
+            'privileges' => $data['privileges'] = 2
+
         ]);
+
+
+    }
+
+    public function getLogout() {
+        Auth::logout();
+
+        return redirect('/');
     }
 }

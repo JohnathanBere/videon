@@ -57,12 +57,19 @@
                         <li class="nav-item">
                             <a href="/">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="/auth/register/">Sign Up</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/auth/login/">Login</a>
-                        </li>
+
+                        @if(Auth::guest())
+                            <li class="nav-item">
+                                <a href="/auth/register/">Sign Up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/auth/login/">Login</a>
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a href="/auth/logout/">Logout</a>
+                            </li>
+                        @endif
                     </ul>
                     <!--//nav-->
                 </div>
