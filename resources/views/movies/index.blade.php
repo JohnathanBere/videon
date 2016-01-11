@@ -5,9 +5,9 @@
     <section class="content-block gallery-1 gallery-1-1">
         <div class="container">
             <div class="underlined-title">
-                <h1>Never Bored.</h1>
+                <h1>Bored?</h1>
                 <hr>
-                <h2>FILMS JUST FOR YOU</h2>
+                <h2>THERE IS A FILM FOR EVERYONE</h2>
             </div>
             <div class="form-group">
                 <div class="row">
@@ -55,6 +55,13 @@
                             <div class="gallery-details">
                                 <h5>{{ $movie->name }}</h5>
                                 <h5>£{{ $movie->price }}</h5>
+
+                                @if(!Auth::guest() && Auth::user()->privileges == 1)
+                                    <a href="/movies/{{ $movie->id }}/edit">Edit</a>
+                                    {!! Form::open(['method' => 'DELETE', 'route' => ['movies.destroy', $movie->id]]) !!}
+                                        {!! Form::submit('Delete') !!}
+                                    {!! Form::close() !!}
+                                @endif
                             </div>
                         </div>
                     </div>

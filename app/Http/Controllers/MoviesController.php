@@ -3,11 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Commands\StoreMovieCommand;
+use App\Commands\UpdateMovieCommand;
+use App\Http\Requests\UpdateMovieRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreMovieRequest;
 use App\Http\Requests;
 use App\Movie;
 use App\Http\Controllers\Auth;
+use App\Commands\DestroyMovieCommand;
 
 class MoviesController extends Controller
 {
@@ -124,7 +127,8 @@ class MoviesController extends Controller
      */
     public function edit($id)
     {
-        return view('movies/edit');
+        $movie = Movie::find($id);
+        return view('movies/edit', compact('movie'));
     }
 
     /**
@@ -134,9 +138,69 @@ class MoviesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateMovieRequest $request, $id)
     {
-        //
+        $name = $request->input('name');
+        $category_id = $request->input('category_id');
+        $director = $request->input('director');
+        $genre = $request->input('genre');
+        $synopsis = $request->input('synopsis');
+        $price = $request->input('price');
+        $main_image = $request->file('main_image');
+        $image1 = $request->file('_image1');
+        $image2 = $request->file('_image2');
+        $image3 = $request->file('_image3');
+
+        $current_mainimage_filename = Movie::find($id)->main_image;
+        $current_image1_filename = Movie::find($id)->_image1;
+        $current_image2_filename = Movie::find($id)->_image2;
+        $current_image3_filename = Movie::find($id)->_image3;
+
+
+        // Check if image(s) uploaded successfully
+        if($main_image) {
+            $main_image_filename = $main_image->getClientOriginalName();
+            $main_image->move(public_path('images/uploaded'), $main_image_filename);
+        }
+
+        else {
+            $main_image_filename = $current_mainimage_filename;
+        }
+
+
+        if($image1) {
+            $image1_filename = $image1->getClientOriginalName();
+            $image1->move(public_path('images/uploaded'), $image1_filename);
+        }
+
+        else {
+            $image1_filename = $current_image1_filename;
+        }
+
+        if($image2) {
+            $image2_filename = $image2->getClientOriginalName();
+            $image2->move(public_path('images/uploaded'), $image2_filename);
+        }
+
+        else {
+            $image2_filename = $current_image2_filename;
+        }
+
+        if($image3) {
+            $image3_filename = $image3->getClientOriginalName();
+            $image3->move(public_path('images/uploaded'), $image3_filename);
+        }
+
+        else {
+            $image3_filename = $current_image3_filename;
+        }
+
+        // Update command
+        $command = new UpdateMovieCommand($id, $name, $category_id, $director, $genre, $synopsis, $price, $main_image_filename, $image1_filename, $image2_filename, $image3_filename);
+        $this->dispatch($command);
+
+        return \Redirect::route('movies.index')
+            ->with('flash_message' , 'Update Successful');
     }
 
     /**
@@ -147,6 +211,10 @@ class MoviesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $command = new DestroyMovieCommand($id);
+        $this->dispatch($command);
+
+        return \Redirect::route('movies.index')
+            ->with('flash_message', 'Movie deleted');
     }
 }

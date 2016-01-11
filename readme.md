@@ -1,4 +1,6 @@
 ## Laravel PHP Framework
+VideOn is a small project that functions mostly as a DVD catalogue, nothing really special but a means to test CRUD functionality in a Laravel built Web Application.
+
 
 [![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
 [![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)

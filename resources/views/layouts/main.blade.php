@@ -40,18 +40,20 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a id="logo" class="navbar-brand" href="/movies">
-                        VideOn
+                        VideOn @if(!Auth::guest() && Auth::user()->privileges == 1): Administrator @endif
                     </a>
                 </div>
                 <!-- Navigation -->
                 <div class="collapse navbar-collapse">
                     <!-- REMEMBER THIS SHOULD ONLY BE VISIBLE TO AN ADMINISTRATOR-->
-                    <ul id="lefty" class="nav navbar-nav navbar-left">
-                        <li class="nav-item">
-                            <a href="/movies/create">Add Movie</a>
-                        </li>
-                        <hr>
-                    </ul>
+                    @if(!Auth::guest() && Auth::user()->privileges == 1)
+                        <ul id="lefty" class="nav navbar-nav navbar-left">
+                            <li class="nav-item">
+                                <a href="/movies/create">Add Movie</a>
+                            </li>
+                            <hr>
+                        </ul>
+                    @endif
 
                     <ul class="nav navbar-nav navbar-right">
                         <li class="nav-item">

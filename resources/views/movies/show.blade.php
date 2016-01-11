@@ -27,6 +27,14 @@
                             <p>{{ $movie->director }}</p>
                             <p>{{ $movie->genre }}</p>
                             <p>£{{ $movie->price }}</p>
+
+                            @if(!Auth::guest() && Auth::user()->privileges == 1)
+                                <a class="btn btn-primary" href="/movies/{{ $movie->id }}/edit">Edit</a>
+                                <!-- <a class="btn btn-danger" href="/movies/{{ $movie->id }}/destroy">Delete</a> -->
+                                {!! Form::open(['method' => 'DELETE', 'route' => ['movies.destroy', $movie->id]]) !!}
+                                    {!! Form::submit('Delete', $attributes = ['class' => 'btn btn-danger']) !!}
+                                {!! Form::close() !!}
+                            @endif
                         </div>
                         <!-- /.col -->
                     </div>
