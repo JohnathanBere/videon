@@ -17,8 +17,9 @@ class UpdateMovieCommand extends Command implements SelfHandling {
 	public $image1;
 	public $image2;
 	public $image3;
+	public $quantity;
 
-	public function __construct($id, $name, $category_id, $director, $genre, $synopsis, $price, $main_image, $image1, $image2, $image3) {
+	public function __construct($id, $name, $category_id, $director, $genre, $synopsis, $price, $main_image, $image1, $image2, $image3, $quantity) {
 		$this->id = $id;
 		$this->name = $name;
 		$this->category_id = $category_id;
@@ -30,6 +31,7 @@ class UpdateMovieCommand extends Command implements SelfHandling {
 		$this->image1 = $image1;
 		$this->image2 = $image2;
 		$this->image3 = $image3;
+		$this->quantity = $quantity;
 	}
 
 	public function handle() {
@@ -44,7 +46,8 @@ class UpdateMovieCommand extends Command implements SelfHandling {
 			'main_image' => $this->main_image,
 			'_image1' => $this->image1,
 			'_image2' => $this->image2,
-			'_image3' => $this->image3
+			'_image3' => $this->image3,
+			'quantity' => $this->quantity
 		));
 	}
 }

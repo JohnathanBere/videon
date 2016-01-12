@@ -15,7 +15,6 @@
                         <label class="control-label" for="formInput18">Finding a film is only the beginning</label>
                         {!! Form::open(array('action' => 'MoviesController@search', 'method' => 'GET')) !!}
                                 {!! Form::text('searchString', null, array('class' => 'form-control', 'id' => 'searchForm', 'placeholder' => 'Search movies')) !!}
-                                <i class="fa fa-search"></i>
                         {!! Form::close() !!}
                     </div>
                 </div>

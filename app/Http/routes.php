@@ -13,6 +13,11 @@
 
 Route::get('/', 'MoviesController@index');
 
+// Cart
+Route::get('/addItem/{movieId}', 'CartController@addItem');
+Route::get('/removeItem/{movieId}', 'CartController@removeItem');
+Route::get('/cart', 'CartController@showCart');
+
 // Search
 Route::get('/search', 'MoviesController@search');
 

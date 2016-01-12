@@ -9,7 +9,7 @@ class Movie extends Model
 {
 	use SearchableTrait;
 	protected $table = 'movies';
-	protected $fillable = ['name', 'category_id', 'director', 'genre', 'synopsis', 'price', 'main_image', '_image1', '_image2', '_image3'];
+	protected $fillable = ['name', 'category_id', 'director', 'genre', 'synopsis', 'price', 'main_image', '_image1', '_image2', '_image3', 'quantity'];
 
 	protected $hidden = [];
 	protected $searchable = [
@@ -22,6 +22,11 @@ class Movie extends Model
 
 	public function category() {
 		return $this->belongsTo('App\Category');
+	}
+
+	public function cartItems()
+	{
+		return $this->hasMany('App\CartItem');
 	}
 
 }

@@ -92,8 +92,12 @@
                         <div class="col-sm-10 col-sm-offset-1 text-center">
                             <h3>Rent This movie</h3>
                             <p>Interested in renting {{ $movie->name }}?</p>
+                            <p> We have {{ $movie->quantity }} left!</p>
 
-                            <button class="btn-lg btn-success">Add to basket</button>
+                            <a href="/addItem/{{$movie->id}}"> <button type="button" class="btn btn-success">
+                                    Add to basket
+                                </button>
+                            </a>
 
                         </div>
                         <!-- /.col -->

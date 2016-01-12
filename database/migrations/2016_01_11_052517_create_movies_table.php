@@ -24,6 +24,7 @@ class CreateMoviesTable extends Migration
             $table->string('_image1');
             $table->string('_image2');
             $table->string('_image3');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

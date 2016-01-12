@@ -37,6 +37,11 @@
                 </div>
 
                 <div class="form-group">
+                    {!! Form::label('quantity', 'Enter a quantity:') !!}
+                    {!! Form::text('quantity', $value = $movie->quantity, $attributes = ['class' => 'form-control', 'name' => 'quantity', 'placeholder' => '1, 10?']) !!}
+                </div>
+
+                <div class="form-group">
                     {!! Form::label('main_image', 'Upload or append Movie main image name / possible URL:') !!}
                     {!! Form::file('main_image', $attributes = ['class' => 'btn btn-default']) !!}
                 </div>

@@ -12,12 +12,13 @@ use App\Movie;
 use App\Http\Controllers\Auth;
 use App\Commands\DestroyMovieCommand;
 use DB;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class MoviesController extends Controller
 {
     public function __construct() {
         $this->middleware('auth');
-        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'addToCart', 'checkOut']]);
         $this->middleware('admin');
         $this->middleware('admin', ['except' => ['index', 'show', 'search']]);
     }
@@ -31,6 +32,7 @@ class MoviesController extends Controller
         $movies = Movie::all();
         return view('movies/index', compact('movies'));
     }
+
 
     public function search() {
         $searchString = \Input::get('searchString');
@@ -69,6 +71,7 @@ class MoviesController extends Controller
         $image1 = $request->file('_image1');
         $image2 = $request->file('_image2');
         $image3 = $request->file('_image3');
+        $quantity = $request->input('quantity');
 
 
         // Check if image(s) uploaded successfully
@@ -110,7 +113,7 @@ class MoviesController extends Controller
         }
 
         // Create command
-        $command = new StoreMovieCommand($name, $category_id, $director, $genre, $synopsis, $price, $main_image_filename, $image1_filename, $image2_filename, $image3_filename);
+        $command = new StoreMovieCommand($name, $category_id, $director, $genre, $synopsis, $price, $main_image_filename, $image1_filename, $image2_filename, $image3_filename, $quantity);
         $this->dispatch($command);
 
         return \Redirect::route('movies.index')
@@ -160,6 +163,7 @@ class MoviesController extends Controller
         $image1 = $request->file('_image1');
         $image2 = $request->file('_image2');
         $image3 = $request->file('_image3');
+        $quantity = $request->file('quantity');
 
         $current_mainimage_filename = Movie::find($id)->main_image;
         $current_image1_filename = Movie::find($id)->_image1;
@@ -206,7 +210,7 @@ class MoviesController extends Controller
         }
 
         // Update command
-        $command = new UpdateMovieCommand($id, $name, $category_id, $director, $genre, $synopsis, $price, $main_image_filename, $image1_filename, $image2_filename, $image3_filename);
+        $command = new UpdateMovieCommand($id, $name, $category_id, $director, $genre, $synopsis, $price, $main_image_filename, $image1_filename, $image2_filename, $image3_filename, $quantity);
         $this->dispatch($command);
 
         return \Redirect::route('movies.index')

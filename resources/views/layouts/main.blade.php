@@ -83,11 +83,6 @@
     </header>
 
 <div class="row">
-    {{--<div class="col-md-4">
-        @section('sidebar')
-            Build something!
-        @show
-    </div> --}}
 
     <div class="col-md-12">
         @if(Session::has('flash_message'))
