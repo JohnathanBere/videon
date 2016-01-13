@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Show Movie')
+@section('title', $movie->name)
 
 @section('content')
     <section class="content-block content-1-8">
