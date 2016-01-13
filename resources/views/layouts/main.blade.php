@@ -69,6 +69,9 @@
                             </li>
                         @else
                             <li class="nav-item">
+                                <a href="/cart/">Basket</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="/auth/logout/">Logout</a>
                             </li>
                         @endif
@@ -106,6 +109,9 @@
     </div>
 </div>
 </div>
+<script>
+    $('div.alert').delay(150).slideUp(300);
+</script>
 <script type="text/javascript" src="{{ URL::asset('js/jquery-1.11.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ URL::asset('js/plugins.js') }}"></script>

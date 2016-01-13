@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Cart;
 use App\CartItem;
 use App\Movie;
+use DB;
 
 class CartController extends Controller
 {
@@ -20,6 +21,7 @@ class CartController extends Controller
 
     public function addItem($movieId)
     {
+
         // Adding a movie as an item to a cart.
         // Initialize cart on grounds of logged in user.
         $cart = Cart::where('user_id', Auth::user()->id)->first();
@@ -34,11 +36,17 @@ class CartController extends Controller
         // A new item is now added based on movie id being the same as the conditional variable,
         $cartItem = new CartItem();
         $cartItem->movie_id = $movieId;
-        $cartItem->cart_id = $cart->id;;
+        $cartItem->cart_id = $cart->id;
         // Consider adding a command that counts down movie quantity each time a movie is added of the same (?movie_id)
+        if ($cartItem->movie->quantity == 0)
+        {
+            return redirect('/');
+        }
+            DB::table('movies')->decrement('quantity', 1);
         $cartItem->save();
 
         return redirect('/cart');
+
 
     }
 
@@ -70,6 +78,7 @@ class CartController extends Controller
     {
         // deletes an item in the user basket
         CartItem::destroy($id);
+        DB::table('movies')->increment('quantity', 1);
         return redirect('/cart');
         // Add a code that readds the movie quantity for that specific item.
     }

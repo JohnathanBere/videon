@@ -30,7 +30,6 @@
 
                             @if(!Auth::guest() && Auth::user()->privileges == 1)
                                 <a class="btn btn-primary" href="/movies/{{ $movie->id }}/edit">Edit</a>
-                                <!-- <a class="btn btn-danger" href="/movies/{{ $movie->id }}/destroy">Delete</a> -->
                                 {!! Form::open(['method' => 'DELETE', 'route' => ['movies.destroy', $movie->id]]) !!}
                                     {!! Form::submit('Delete', $attributes = ['class' => 'btn btn-danger']) !!}
                                 {!! Form::close() !!}
@@ -91,13 +90,17 @@
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-1 text-center">
                             <h3>Rent This movie</h3>
-                            <p>Interested in renting {{ $movie->name }}?</p>
-                            <p> We have {{ $movie->quantity }} left!</p>
+                            @if( $movie->quantity > 0)
+                                <p>Interested in renting {{ $movie->name }}?</p>
+                                <p> We have {{ $movie->quantity }} left!</p>
+                                <a href="/addItem/{{$movie->id}}"> <button type="button" class="btn btn-success">
+                                        Add to basket
+                                    </button>
+                                </a>
+                            @else
+                                <p>We're out. Check later</p>
+                            @endif
 
-                            <a href="/addItem/{{$movie->id}}"> <button type="button" class="btn btn-success">
-                                    Add to basket
-                                </button>
-                            </a>
 
                         </div>
                         <!-- /.col -->

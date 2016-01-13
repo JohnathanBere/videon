@@ -21,7 +21,7 @@
                     <tr>
                         <td class="col-sm-8 col-md-6">
                             <div class="media">
-                                <a class="thumbnail pull-left" href="/movies/{{ $item->movie->id }}"> <img class="media-object" src="{{$item->movie->main_image}}" style="width: 100px; height: 72px;"> </a>
+                                <a class="thumbnail pull-left" href="/movies/{{ $item->movie->id }}"> <img class="media-object" src="{{ URL::asset('images/uploaded/' . $item->movie->main_image) }}" style="width: 100px; height: 72px;"> </a>
                                 <div class="media-body">
                                     <h4 class="media-heading"><a href="/movies/{{ $item->movie->id }}">{{$item->movie->name}}</a></h4>
                                 </div>
