@@ -40,7 +40,7 @@
                                 <img src="{{ URL::asset('images/uploaded/' . $movie->main_image) }}" class="img-responsive" alt="{{ $movie->name }}">
                                 <div class="image-overlay"></div>
                                 <a href="{{ URL::asset('images/uploaded/' . $movie->main_image) }}" class="gallery-zoom"><i class="fa fa-eye" alt="{{ $movie->name }}"></i></a>
-                                <a href="movies/{{ $movie->id }}/" class="gallery-link" target="_blank"><i class="fa fa-film"></i></a>
+                                <a href="movies/{{ $movie->id }}/" class="gallery-link"><i class="fa fa-film"></i></a>
                             </div>
                             <div class="gallery-details">
                                 <h5>{{ $movie->name }}</h5>

@@ -42,24 +42,24 @@
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('main_image', 'Upload or append Movie main image name / possible URL:') !!}
+                    {!! Form::label('main_image', 'Main Image:') !!}
                     {!! Form::file('main_image', $attributes = ['class' => 'btn btn-default']) !!}
                 </div>
 
                 <panel class="panel-heading"><hr></panel>
 
                 <div class="form-group">
-                    {!! Form::label('_image1', 'Upload or append Movie preview image name / possible URL:') !!}
+                    {!! Form::label('_image1', 'Image 1:') !!}
                     {!! Form::file('_image1', $attributes = ['class' => 'btn btn-default']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('_image2', 'Upload or append Movie preview image name / possible URL:') !!}
+                    {!! Form::label('_image2', 'Image 2:') !!}
                     {!! Form::file('_image2', $attributes = ['class' => 'btn btn-default']) !!}
                 </div>
 
                 <div class="form-group">
-                    {!! Form::label('_image3', 'Upload or append Movie preview image name / possible URL:') !!}
+                    {!! Form::label('_image3', 'Image 3:') !!}
                     {!! Form::file('_image3', $attributes = ['class' => 'btn btn-default']) !!}
                 </div>
 
