@@ -1,5 +1,7 @@
 <?php
 
+// If you want to go use locally, just comment this bunch out!
+// This will ensure compatibility with Heroku's MySQL database
 $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 $host = $url["host"];
 $username = $url["user"];
@@ -58,6 +60,9 @@ return [
             'prefix'   => '',
         ],
 
+        // Change the variables back to local configurations as appropriate for you.
+        // Corresponding value to key pairs for host, database, username and password are the declared
+        // variables from the top.
         'mysql' => array(
             'driver' => 'mysql',
             'host' => $host,
